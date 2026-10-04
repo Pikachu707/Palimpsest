@@ -1,7 +1,7 @@
 # Palimpsest
 
 Artifact for **"Palimpsest: Erased Data Still Shapes Retrieval-Augmented LLM Systems"**
-(anonymous submission, IEEE S&P 2027).
+(anonymous submission).
 
 Retrieval-augmented LLM applications do not only store data. They *derive* artifacts from it:
 graph-index topology, quantizer codebooks, LLM-written entity descriptions, consolidated memories,
