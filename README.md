@@ -266,21 +266,6 @@ deletion), and `after_given_effective`. GraphRAG additionally reports `target_in
   because Mem0's extraction prompt is about 6.7k tokens and LightRAG's query budget is 30k.
 * An interrupted GraphRAG run resumes: rerun the same command, and completed worlds are reused.
 
-### Why the first zombie runs reported "n/a" for GraphRAG and Mem0
-
-* **GraphRAG.** The first runs poisoned the managers of the *target* subjects, who are absent
-  from a zombie world's corpus, so each manager existed only in the five poison documents. Local
-  search maps a question to entities by embedding similarity and returned similarly named people
-  instead: the target appeared in none of the 30 retrieved contexts in
-  `paper_results/graphrag/run2/zp_*`, and success was 0% before deletion, so no deletion effect
-  could be measured. Indexed subjects, in contrast, were retrieved in 8 of 10 recovery worlds.
-  `graphrag_exp` now poisons indexed background subjects (`--zombie-targets subject`, the
-  default; `manager` and the original `absent` remain available).
-* **Mem0.** There was no zombie experiment. Mem0 2.2.1 shows the LLM the session's last ten
-  messages on every `add()` "to resolve references", read from a SQLite `messages` table that
-  neither `delete` nor `delete_all` touches. `mem0-zombie` measures whether that log revives
-  deleted poison.
-
 ## Results behind the paper
 
 `paper_results/` holds the raw results and logs of every run in the paper (see
